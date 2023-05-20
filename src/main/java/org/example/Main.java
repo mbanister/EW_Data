@@ -31,9 +31,9 @@ public class Main {
         new MyFrame();
     }
     public static class MyFrame extends JFrame implements ActionListener{
-        JLabel ds,dd,d1,d2,d3,d4,d5,d6,textError,sourceError,destError;
+        JLabel ds,dd,d1,d2,d3,d4,d5,d6,textError,sourceError,destError,wk1l,wk2l;
         JButton sourceButton, destButton;
-        JTextField tf1,tf2,tf3,tf4,function;
+        JTextField tf1,tf2,tf3,tf4,function,wk1t,wk2t;
         JComboBox menu;
         JButton confirm,add;
         JTextArea console;
@@ -56,6 +56,14 @@ public class Main {
             dd.setBounds(210,40,160,30);
             destButton = new JButton("Choose File...");
             destButton.setBounds(230,70,120,20);
+            wk1l = new JLabel("Select Worksheet");
+            wk1l.setBounds(40,5,150,30);
+            wk1t = new JTextField();
+            wk1t.setBounds(50,15,20,20);
+            wk2l = new JLabel("Select Worksheet");
+            wk2l.setBounds(210,5,150,30);
+            wk2t = new JTextField();
+            wk2t.setBounds(220,15,20,20);
             d1 = new JLabel("SSN source column");
             d1.setBounds(65,100,150,20);
             tf1=new JTextField();
@@ -117,6 +125,7 @@ public class Main {
             this.add(textError);this.add(sourceError);this.add(destError);
             this.add(wheel);
             this.add(function);this.add(add);
+            this.add(wk1t);this.add(wk2t);this.add(wk1l);this.add(wk2l);
             this.setSize(420,750);
             this.setLayout(null);
             this.setVisible(true);
@@ -289,8 +298,8 @@ public class Main {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                Sheet sourceSheet = sourceWorkbook.getSheetAt(0);//todo select sheet
-                Sheet destinationSheet = destinationWorkbook.getSheetAt(0);//todo select sheet
+                Sheet sourceSheet = sourceWorkbook.getSheetAt(Integer.parseInt(wk1t.getText()));//todo select sheet
+                Sheet destinationSheet = destinationWorkbook.getSheetAt(Integer.parseInt(wk2t.getText()));//todo select sheet
                 Pattern regex = Pattern.compile("^(?!666|000|9\\d{2})\\d{3}-(?!00)\\d{2}-(?!0{4})\\d{4}$");
                 //String mvSourceColumn;
                 //String mvDestColumn;
